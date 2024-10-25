@@ -1,7 +1,24 @@
 #biography{
-    width: 70%;
+    width: 80%;
     margin: 0 auto;
     margin-block: 20px;
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: center;
+}
+
+#biography p{
+    font-size: var(--fs-xl);
+    padding: 20px;
+    border: 1px solid black;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px darkgrey;
+}
+
+#biography a{
+    color: blue;
 }
 
 .biography-text{
@@ -10,6 +27,31 @@
     align-items: stretch;
     justify-content: center;
     gap: 50px;
+}
+
+.personal-life{
+    margin-top: 40px;
+    padding: 10px;
+    text-align: center;
+}
+
+.personal-life-container{
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    gap: 40px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.personal-life-container>img{
+    border-radius: 8px;
+}
+
+.personal-life h3{
+    font-size: calc(var(--fs-xl) + 5px);
+    text-align: center;
 }
 
 @media(max-width: 1024px)
@@ -22,21 +64,4 @@
 .biography-text img{
     width: auto;
     border-radius: 10px;
-}
-
-#biography p{
-    font-size: var(--fs-xl);
-    padding: 20px;
-    border: 1px solid black;
-    text-align: center;
-    border-radius: 10px;
-    box-shadow: 5px 5px 5px darkgrey;
-}
-
-#netValue>div{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 50px;
 }

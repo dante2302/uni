@@ -1,3 +1,15 @@
+#netValue>div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+
+.pickaxe-img{
+    width: 400px;
+}
+
 .net-worth-container{
     display: flex;
     flex-direction: row;
@@ -16,4 +28,18 @@
     font-style: italic;
     color: grey;
     display: block;
+}
+
+.bmw-container{
+    display: flex;
+    flex-direction: column;
+    margin-left: 200px;
+}
+
+.mpower-logo, .bmw-logo{
+    width: 150px; 
+}
+
+.img-grid{
+
 }

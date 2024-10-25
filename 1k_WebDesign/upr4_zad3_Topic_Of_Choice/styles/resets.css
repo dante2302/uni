@@ -25,13 +25,3 @@ color: inherit;
 ul, ol{
     list-style: none; 
 }
-
-.bmw-container{
-    display: flex;
-    flex-direction: column;
-    margin-left: 200px;
-}
-
-.mpower-img, .bmw-logo{
-    width: 300px
-}
