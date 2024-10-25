@@ -1,0 +1,27 @@
+header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: 1px solid black;
+    padding-right: 5px;
+}
+
+header>h1{
+    font-size: calc(var(--fs-xl) + 120px);
+    font-weight: 400;
+    color: var(--clr-accent-gold);
+}
+
+@media(max-width: 1024px)
+{
+    header>h1
+    {
+        font-size: calc(var(--fs-xl) + 40px)
+    }
+    header>img{
+        width: 50%;
+        min-width: 300px;
+        min-height: 300px;
+    }
+}
+

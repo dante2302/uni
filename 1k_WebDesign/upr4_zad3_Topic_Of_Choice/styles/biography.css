@@ -1,0 +1,42 @@
+#biography{
+    width: 70%;
+    margin: 0 auto;
+    margin-block: 20px;
+}
+
+.biography-text{
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: center;
+    gap: 50px;
+}
+
+@media(max-width: 1024px)
+{
+    .biography-text{
+        flex-direction: column;
+    }
+}
+
+.biography-text img{
+    width: auto;
+    border-radius: 10px;
+}
+
+#biography p{
+    font-size: var(--fs-xl);
+    padding: 20px;
+    border: 1px solid black;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px darkgrey;
+}
+
+#netValue>div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}

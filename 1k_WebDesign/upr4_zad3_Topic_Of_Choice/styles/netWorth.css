@@ -1,0 +1,19 @@
+.net-worth-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.net-worth-container>img{
+    width: 70px;
+}
+
+.net-worth{
+    display: block;
+    font-size: calc(var(--fs-xl) + 10px);
+}
+
+.last-update{
+    font-style: italic;
+    color: grey;
+    display: block;
+}

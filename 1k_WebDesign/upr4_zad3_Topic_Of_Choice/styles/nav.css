@@ -1,0 +1,18 @@
+nav {
+    background-color: black;
+    padding: 40px 20px;
+}
+
+nav > ul {
+    display: flex;
+    font-weight: bold;
+    gap: 2em;
+    flex-direction: row;
+    font-size: var(--fs-xl);
+    color: white;
+}
+
+nav a:hover{
+    color: var(--clr-accent-gold);
+    transition: .5s all ease;
+}
