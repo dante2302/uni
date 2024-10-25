@@ -1,0 +1,125 @@
+:root{
+    --fs-sm: 12px;
+    --fs-reg: 16px;
+    --fs-lg: 20px;
+    --fs-xl: 22px;
+    --clr-accent-gold: #ae8625;
+}
+
+*, *::after, *::before{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: Oswald;
+}
+
+a, a:visited, a:link{
+text-decoration: none;
+color: inherit;
+}
+
+ul, ol{
+    list-style: none; 
+}
+
+/* NAV */
+
+nav {
+    background-color: black;
+    padding: 10px;
+}
+
+nav > ul {
+    display: flex;
+    font-weight: bold;
+    gap: 2em;
+    flex-direction: row;
+    font-size: var(--fs-xl);
+    color: white;
+}
+
+nav a:hover{
+    color: var(--clr-accent-gold);
+    transition: .5s all ease;
+}
+
+
+/* HEADER */
+
+header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-bottom: 1px solid black;
+}
+
+header>h1{
+    font-size: calc(var(--fs-xl) + 100px);
+    font-weight: 400;
+    color: var(--clr-accent-gold);
+}
+
+.bmw-container{
+    display: flex;
+    flex-direction: column;
+    margin-left: 200px;
+}
+
+.mpower-img, .bmw-logo{
+    width: 300px
+}
+
+/* BIOGRAPHY */
+
+#biography{
+    width: 60%;
+    margin: 0 auto;
+    margin-block: 20px;
+}
+.section>h2{
+    font-size: calc(var(--fs-xl) + 30px);
+    text-align: center;
+}
+
+#biography>div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+
+#biography p{
+    font-size: var(--fs-xl);
+}
+
+#netValue>div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+
+.net-worth-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.net-worth-container>img{
+    width: 70px;
+}
+
+.net-worth{
+    display: block;
+    font-size: calc(var(--fs-xl) + 10px);
+}
+
+.last-update{
+    font-style: italic;
+    color: grey;
+    display: block;
+}
