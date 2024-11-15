@@ -1,12 +1,6 @@
 #include "menu.h"
+#include "utils.h"
 #include <iostream>
-
-#ifdef _WIN32
-#include <windows.h> 
-#else
-#include <unistd.h>   
-#include <sys/ioctl.h> 
-#endif
 
 const std::string menu_EN =
     "| Main Menu\n"
@@ -20,7 +14,7 @@ const std::string menu_EN =
     "| 8. Advanced Options\n"
     "| 9. Exit\n";
 
-const std::string menu_BG = 
+const std::string menu_BG =
     "| Меню\n"
     "| 1. Добавяне на Участник\n"
     "| 2. Показване на всички участници\n"
@@ -46,33 +40,33 @@ static const std::string ascii_art_BG =
     " | . \\| |_| ||  _  || . \\   | |  |  __/ | |___     ___) |/ ___ \\    | . \\ |  __// ___ \\| |___| |_| | | | / ___ \\ \n"
     " |_|__\\\\___/ |_| |_||_|__\\  |_|  |_|     \\____|   |____//_/   \\_\\   |_|__\\|_|  /_/   \\_\\\\____|\\___/  |_|/_/   \\_\\\n\n";
 
+static const std::string heading_BG = "КОНКУРС ЗА КРАСОТА";
+static const std::string heading_EN = "BEAUTY CONTEST";
+
 static const std::string choice_BG = "Твоят Избор: ";
 static const std::string choice_EN = "Твоят Избор: ";
 
-void display_menu(bool isBg) {
+static const int ART_BOUNDARY = 113;
+
+void display_menu(bool isBg)
+{
     const int terminalWidth = get_terminal_width();
     int choice;
-    do {
+    do
+    {
         clear_window();
-
         print_char_whole_width('=', terminalWidth);
-        std::cout << (isBg ? ascii_art_BG : ascii_art_EN);
-        print_char_whole_width('=', terminalWidth);
-
-        std::cout << "\n";
-        std::cout << (isBg ? menu_BG : menu_EN);
-        std::cout << "\n";
-        std::cout << (isBg ?  choice_BG : choice_EN);
-        std::cin >> choice;
-
+        isBg ? printMenu_BG(terminalWidth) : printMenu_EN(terminalWidth);
     } while (choice != 9);
 
     std::cout << "Program terminated. Data saved.\n";
 }
 
-void display_submenu() {
+void display_submenu()
+{
     int choice;
-    do {
+    do
+    {
         std::cout << "\nAdvanced Submenu\n"
                   << "1. Display Participants Sorted by Age and Name\n"
                   << "2. Search by Age and Gender\n"
@@ -80,45 +74,43 @@ void display_submenu() {
 
         std::cin >> choice;
 
-        switch (choice) {
-            case 3:
-                std::cout << "Returning to Main Menu...\n";
-                break;
+        switch (choice)
+        {
+        case 3:
+            std::cout << "Returning to Main Menu...\n";
+            break;
         }
     } while (choice != 3);
 }
 
-int get_terminal_width() {
-    int terminal_width = 80;  // Default value
-
-#ifdef _WIN32
-    CONSOLE_SCREEN_BUFFER_INFO csbi;
-    if (GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi)) {
-        terminal_width = csbi.srWindow.Right - csbi.srWindow.Left + 1;  
-    }
-#else
-    struct winsize ws;
-    if (ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws) != -1) {
-        terminal_width = ws.ws_col;  
-    }
-#endif
-
-    return terminal_width;
-}
-
-void print_char_whole_width(char c, int width) {
-    for (int i = 0; i < width; i++) {
-        std::cout << c;
-    }
-    std::cout << std::endl;
-}
-
-void clear_window()
+void printMenu_EN(int terminalWidth)
 {
-    #ifdef _WIN32
-        system("cls");
-    #else
+    std::cout << '\n';
 
-        system("clear");
-    #endif
+    terminalWidth > ART_BOUNDARY
+        ? center_multiline_string(ascii_art_EN, terminalWidth)
+        : center_string(heading_EN, terminalWidth);
+
+    print_char_whole_width('=', terminalWidth);
+
+    std::cout << "\n";
+    std::cout << (menu_EN);
+    std::cout << "\n";
+    std::cout << (choice_EN);
+}
+
+void printMenu_BG(int terminalWidth)
+{
+    std::cout << '\n';
+
+    terminalWidth > ART_BOUNDARY
+        ? center_multiline_string(ascii_art_BG, terminalWidth)
+        : center_string(heading_BG, terminalWidth, true);
+
+    print_char_whole_width('=', terminalWidth);
+
+    std::cout << "\n";
+    std::cout << (menu_BG);
+    std::cout << "\n";
+    std::cout << (choice_BG);
 }

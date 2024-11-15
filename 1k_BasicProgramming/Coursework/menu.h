@@ -2,12 +2,9 @@
 #define MENU_H
 
 #include <string>
+#include "utils.h"
 
-// Function declarations
-int get_terminal_width();
-void clear_window();
-void print_char_whole_width(char c, int width);
 void display_menu(bool isBg = true);
 void display_submenu();
 
-#endif // MENU_H
+#endif 
