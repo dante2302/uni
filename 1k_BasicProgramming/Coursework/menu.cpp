@@ -1,116 +1,99 @@
 #include "menu.h"
-#include "utils.h"
-#include <iostream>
 
-const std::string menu_EN =
-    "| Main Menu\n"
-    "| 1. Add Participants\n"
-    "| 2. Display Participants\n"
-    "| 3. Search by Name\n"
-    "| 4. Find Youngest\n"
-    "| 5. Sort by Age\n"
-    "| 6. Categorize Participants\n"
-    "| 7. Determine Winners\n"
-    "| 8. Advanced Options\n"
-    "| 9. Exit\n";
+void display_menu(bool isBG)
+{
+    const Menu *menu = isBG ? &menu_BG : &menu_EN;
 
-const std::string menu_BG =
-    "| Меню\n"
-    "| 1. Добавяне на Участник\n"
-    "| 2. Показване на всички участници\n"
-    "| 3. Показване най-младия участник\n"
-    "| 4. Търсене на участник по име\n"
-    "| 5. Подреди участници по възраст(възходящ ред)\n"
-    "| 6. Допълнителни опции \n"
-    "| 7. Категоризиране на участници \n"
-    "| 8. Определи победители \n"
-    "| 9. Изход \n";
+    clear_window();
+    print_menu(*menu, isBG);
 
-static const std::string ascii_art_EN =
-    "  ____                _                ____               _              _   \n"
-    " | __ )   ___   __ _ | |_  _   _      / ___| ___   _ __  | |_  ___  ___ | |_ \n"
-    " |  _ \\  / _ \\ / _` || __|| | | |    | |    / _ \\ | '_ \\ | __|/ _ \\/ __|| __|\n"
-    " | |_) ||  __/| (_| || |_ | |_| |    | |___| (_) || | | || |_|  __/\\__ \\| |_ \n"
-    " |____/  \\___| \\__,_| \\__| \\__, |     \\____|\\___/ |_| |_| \\__|\\___||___/ \\__|\n\n";
+    int choice;
+    choice = get_validated_int(
+        menu->invalid_choice, 
+        [](int choice){ return choice >= 1 && choice <= 9; }
+    );
 
-static const std::string ascii_art_BG =
-    "  _  __ ___   _   _  _  ____   __ ____    ____     _____    _        _  __ ____    _     ____  ___  _____   _    \n"
-    " | |/ // _ \\ | | | || |/ /\\ \\ / /|  _ \\  / ___|   |___ /   / \\      | |/ /|  _ \\  / \\   / ___|/ _ \\|_   _| / \\   \n"
-    " | ' /| | | || |_| || ' /  \\ V / | |_) || |         |_ \\  / _ \\     | ' / | |_) |/ _ \\ | |   | | | | | |  / _ \\  \n"
-    " | . \\| |_| ||  _  || . \\   | |  |  __/ | |___     ___) |/ ___ \\    | . \\ |  __// ___ \\| |___| |_| | | | / ___ \\ \n"
-    " |_|__\\\\___/ |_| |_||_|__\\  |_|  |_|     \\____|   |____//_/   \\_\\   |_|__\\|_|  /_/   \\_\\\\____|\\___/  |_|/_/   \\_\\\n\n";
+    std::cin.clear();
 
-static const std::string heading_BG = "КОНКУРС ЗА КРАСОТА";
-static const std::string heading_EN = "BEAUTY CONTEST";
+    handle_menu_choice(*menu, choice);
+}
 
-static const std::string choice_BG = "Твоят Избор: ";
-static const std::string choice_EN = "Твоят Избор: ";
+// void display_submenu()
+// {
+//     int choice;
+//     do
+//     {
+//         std::cout << "\nAdvanced Submenu\n"
+//                   << "1. Display Participants Sorted by Age and Name\n"
+//                   << "2. Search by Age and Gender\n"
+//                   << "3. Return to Main Menu\n";
 
-static const int ART_BOUNDARY = 113;
+//         std::cin >> choice;
 
-void display_menu(bool isBg)
+//         switch (choice)
+//         {
+//         case 3:
+//             std::cout << "Returning to Main Menu...\n";
+//             break;
+//         }
+//     } while (choice != 3);
+// }
+
+void print_menu(const Menu &menu, bool isBG)
 {
     const int terminalWidth = get_terminal_width();
-    int choice;
-    do
-    {
-        clear_window();
-        print_char_whole_width('=', terminalWidth);
-        isBg ? printMenu_BG(terminalWidth) : printMenu_EN(terminalWidth);
-    } while (choice != 9);
+    std::cout << '\n';
 
-    std::cout << "Program terminated. Data saved.\n";
+    print_char_whole_width('=', terminalWidth);
+
+    terminalWidth > ART_BOUNDARY
+        ? center_multiline_string(menu.ascii_art, terminalWidth)
+        : center_string(menu.heading, terminalWidth, isBG);
+
+    print_char_whole_width('=', terminalWidth);
+
+    std::cout << "\n";
+    std::cout << (menu.options);
+    std::cout << "\n";
+    std::cout << (menu.choice_prompt);
 }
 
-void display_submenu()
+bool valid_menu_option()
 {
-    int choice;
-    do
+}
+
+void handle_menu_choice(const Menu &menu, const int &choice)
+{
+    int count = 0;
+    switch (choice)
     {
-        std::cout << "\nAdvanced Submenu\n"
-                  << "1. Display Participants Sorted by Age and Name\n"
-                  << "2. Search by Age and Gender\n"
-                  << "3. Return to Main Menu\n";
-
-        std::cin >> choice;
-
-        switch (choice)
-        {
-        case 3:
-            std::cout << "Returning to Main Menu...\n";
+        case 1:
+            add_participants(count);
             break;
-        }
-    } while (choice != 3);
-}
 
-void printMenu_EN(int terminalWidth)
-{
-    std::cout << '\n';
+        case 2:
+            break;
 
-    terminalWidth > ART_BOUNDARY
-        ? center_multiline_string(ascii_art_EN, terminalWidth)
-        : center_string(heading_EN, terminalWidth);
+        case 3:
+            break;
 
-    print_char_whole_width('=', terminalWidth);
+        case 4:
+            break;
 
-    std::cout << "\n";
-    std::cout << (menu_EN);
-    std::cout << "\n";
-    std::cout << (choice_EN);
-}
+        case 5:
+            break;
 
-void printMenu_BG(int terminalWidth)
-{
-    std::cout << '\n';
+        case 6:
+            break;
 
-    terminalWidth > ART_BOUNDARY
-        ? center_multiline_string(ascii_art_BG, terminalWidth)
-        : center_string(heading_BG, terminalWidth, true);
+        case 7:
+            break;
 
-    print_char_whole_width('=', terminalWidth);
+        case 8:
+            break;
 
-    std::cout << "\n";
-    std::cout << (menu_BG);
-    std::cout << "\n";
-    std::cout << (choice_BG);
+        case 9:
+            std::cout << menu.exit_text;
+            break;
+    }
 }
