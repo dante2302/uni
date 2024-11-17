@@ -58,10 +58,6 @@ void print_menu(const Menu &menu, bool isBG)
     std::cout << (menu.choice_prompt);
 }
 
-bool valid_menu_option()
-{
-}
-
 void handle_menu_choice(const Menu &menu, const int &choice)
 {
     int count = 0;

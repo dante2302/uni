@@ -5,9 +5,9 @@
 #include <iostream>
 #include <limits>
 #include <ios>
-#include "utils.h"
-#include "validation.h"
-#include "participants.h"
+#include "../utils/utils.h"
+#include "../validation/validation.h"
+#include "../participants/participants.h"
 
 
 struct Menu

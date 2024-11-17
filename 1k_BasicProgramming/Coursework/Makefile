@@ -1,35 +1,43 @@
 # Compiler and flags
 CXX = g++
-CXXFLAGS = -std=c++17 -Wall -Wextra -pedantic
+CXXFLAGS = -Wall -std=c++17
+LIBS = -lpthread -lgtest
 
 # Directories
-SRC_DIR = .
+SRC_DIR = src
 OBJ_DIR = obj
-BIN_DIR = .
+OUT_DIR = .
 
-# Source files and output binary
-SRCS = main.cpp menu.cpp utils.cpp participants.cpp validation.cpp
-OBJS = $(addprefix $(OBJ_DIR)/, $(SRCS:.cpp=.o))
-TARGET = $(BIN_DIR)/program
+# List of source files
+SRCS = $(SRC_DIR)/main.cpp \
+       $(SRC_DIR)/menu/menu.cpp \
+       $(SRC_DIR)/utils/utils.cpp \
+       $(SRC_DIR)/participants/participants.cpp \
+       $(SRC_DIR)/validation/validation.cpp
 
-# Default rule
-all: $(TARGET)
+# List of object files
+OBJS = $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 
-# Create the target executable
-$(TARGET): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $@ $(OBJS)
+# Name of the output executable
+OUT = $(OUT_DIR)/out
 
-# Rule to compile source files into object files
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+# Default target
+all: $(OUT)
 
-# Ensure the obj directory exists
-$(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
+# Rule to link object files to create the executable
+$(OUT): $(OBJS)
+	$(CXX) $(CXXFLAGS) -o $@ $^
 
-# Clean rule to remove compiled files
+# Rule to compile .cpp files to .o object files
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
+	@mkdir -p $(OBJ_DIR)/$(dir $*) # Ensure subdirectories for object files are created
+	$(CXX) $(CXXFLAGS) -c $< -o $@ $(LIBS)
+
+# Clean up build files
 clean:
-	rm -rf $(OBJ_DIR) $(TARGET)
+	rm -rf $(OBJ_DIR)
 
-# Phony targets to prevent conflicts with file names
-.PHONY: all clean
+# Rebuild everything
+rebuild: clean all
+
+.PHONY: all clean rebuild

@@ -6,8 +6,8 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
-#include "utils.h"
-#include "validation.h"
+#include "../utils/utils.h"
+#include "../validation/validation.h"
 
 static const int MAX_PARTICIPANTS = 30;
 
