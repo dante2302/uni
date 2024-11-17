@@ -6,6 +6,8 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
+#include <limits>
+#include <sstream>
 #include "../utils/utils.h"
 #include "../validation/validation.h"
 
@@ -24,6 +26,7 @@ struct Participant {
 
 // Basic assignment
 void add_participants(int& count);
+void display_participants();
 // void print_participants(const std::vector<Participant>& participants);
 // void find_youngest();
 // void search_by_name(const std::vector<Participant>& participants, const std::string& name);

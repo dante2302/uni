@@ -65,9 +65,12 @@ void handle_menu_choice(const Menu &menu, const int &choice)
     {
         case 1:
             add_participants(count);
+            display_menu();
             break;
 
         case 2:
+            display_participants();
+            display_menu();
             break;
 
         case 3:

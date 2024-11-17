@@ -19,7 +19,7 @@ SRCS = $(SRC_DIR)/main.cpp \
 OBJS = $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 
 # Name of the output executable
-OUT = $(OUT_DIR)/out
+OUT = $(OUT_DIR)/program.out
 
 # Default target
 all: $(OUT)
