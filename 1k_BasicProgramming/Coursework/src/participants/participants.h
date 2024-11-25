@@ -9,6 +9,7 @@
 #include <limits>
 #include <sstream>
 #include "../utils/utils.h"
+#include "../menu/menu.h"
 #include "../validation/validation.h"
 
 static const int MAX_PARTICIPANTS = 30;

@@ -5,6 +5,7 @@ void display_menu(bool isBG)
     const Menu *menu = isBG ? &menu_BG : &menu_EN;
 
     clear_window();
+    std::cout << "displayed..." << std::endl;
     print_menu(*menu, isBG);
 
     int choice;
@@ -65,12 +66,10 @@ void handle_menu_choice(const Menu &menu, const int &choice)
     {
         case 1:
             add_participants(count);
-            display_menu();
             break;
 
         case 2:
             display_participants();
-            display_menu();
             break;
 
         case 3:
@@ -95,4 +94,12 @@ void handle_menu_choice(const Menu &menu, const int &choice)
             std::cout << menu.exit_text;
             break;
     }
+}
+
+void return_to_main_menu()
+{
+    std::cout << "Press Enter to return...";
+    std::string placeholder;
+    getline(std::cin, placeholder);
+    display_menu();
 }

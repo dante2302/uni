@@ -83,6 +83,7 @@ static const int ART_BOUNDARY = 113;
 void display_menu(const bool isBG = true);
 void print_menu(const Menu &menu, const bool isBG = true);
 void handle_menu_choice(const Menu &menu, const int &choice);
+void return_to_main_menu();
 // void display_submenu();
 
 #endif 
