@@ -1,4 +1,16 @@
 #include "participants.h"
+#include <string>
+#include <iostream>
+#include <fstream>
+#include <iomanip>
+#include <limits>
+#include <sstream>
+
+#include "../utils/utils.h"
+#include "../menu/menu.h"
+#include "../sorting/sorting.h"
+#include "../validation/validation.h"
+#include "../sorting/sorting.h"
 
 
 using namespace std;
@@ -112,5 +124,34 @@ void display_participants()
                   << std::setw(10) << std::left << p.calf
                   << std::endl;
     }
+
+    std::cout << "All Participants have been added." << std::endl;
     return_to_main_menu();
+}
+
+void sort_participants(const int &count)
+{
+    if(count == 0)
+    {
+        cout << "No Participants to sort.\n";
+        return_to_main_menu();
+    }
+    cout << "Participants sorted by age.\n";
+    merge_sort<Participant>(
+        participants,
+        0,
+        count - 1,
+        [](const Participant &a, const Participant &b)
+        {
+            return a.age < b.age;
+        }
+    );
+
+    return_to_main_menu();
+}
+
+void printParticipants(const Participant arr[], int count) {
+    for (int i = 0; i < count; i++) {
+        std::cout << "Name: " << arr[i].name << ", Age: " << arr[i].age << '\n';
+    }
 }

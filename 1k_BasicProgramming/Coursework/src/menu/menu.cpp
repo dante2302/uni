@@ -1,3 +1,10 @@
+#include <string>
+#include <iostream>
+#include <limits>
+#include <ios>
+#include "../utils/utils.h"
+#include "../validation/validation.h"
+#include "../participants/participants.h"
 #include "menu.h"
 
 void display_menu(bool isBG)
@@ -79,6 +86,7 @@ void handle_menu_choice(const Menu &menu, const int &choice)
             break;
 
         case 5:
+            sort_participants(count);    
             break;
 
         case 6:

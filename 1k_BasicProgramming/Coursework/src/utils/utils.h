@@ -1,10 +1,8 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-#include <string>
 #include <vector>
-#include <iostream>
-#include <functional>
+#include <string>
 
 int get_terminal_width();
 

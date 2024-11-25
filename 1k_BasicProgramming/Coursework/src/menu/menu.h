@@ -1,15 +1,6 @@
 #ifndef MENU_H
 #define MENU_H
 
-#include <string>
-#include <iostream>
-#include <limits>
-#include <ios>
-#include "../utils/utils.h"
-#include "../validation/validation.h"
-#include "../participants/participants.h"
-
-
 struct Menu
 {
     std::string options;

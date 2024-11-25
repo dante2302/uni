@@ -1,6 +1,8 @@
-#include "utils.h"
 #include <sstream>
 #include <iostream>
+#include <functional>
+#include "utils.h"
+
 #ifdef _WIN32
 #include <windows.h>
 #else

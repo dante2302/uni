@@ -13,7 +13,7 @@ SRCS = $(SRC_DIR)/main.cpp \
        $(SRC_DIR)/menu/menu.cpp \
        $(SRC_DIR)/utils/utils.cpp \
        $(SRC_DIR)/participants/participants.cpp \
-       $(SRC_DIR)/validation/validation.cpp
+       $(SRC_DIR)/validation/validation.cpp \
 
 # List of object files
 OBJS = $(SRCS:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
