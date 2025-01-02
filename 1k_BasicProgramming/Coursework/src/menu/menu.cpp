@@ -7,23 +7,21 @@
 #include "../participants/participants.h"
 #include "menu.h"
 
-void display_menu(bool isBG)
+void display_menu()
 {
-    const Menu *menu = isBG ? &menu_BG : &menu_EN;
 
     clear_window();
-    std::cout << "displayed..." << std::endl;
-    print_menu(*menu, isBG);
+    print_menu(main_menu);
 
     int choice;
     choice = get_validated_int(
-        menu->invalid_choice, 
+        main_menu.invalid_choice, 
         [](int choice){ return choice >= 1 && choice <= 9; }
     );
 
     std::cin.clear();
 
-    handle_menu_choice(*menu, choice);
+    handle_menu_choice(main_menu, choice);
 }
 
 // void display_submenu()
@@ -47,7 +45,7 @@ void display_menu(bool isBG)
 //     } while (choice != 3);
 // }
 
-void print_menu(const Menu &menu, bool isBG)
+void print_menu(const Menu &menu)
 {
     const int terminalWidth = get_terminal_width();
     std::cout << '\n';
@@ -56,7 +54,7 @@ void print_menu(const Menu &menu, bool isBG)
 
     terminalWidth > ART_BOUNDARY
         ? center_multiline_string(menu.ascii_art, terminalWidth)
-        : center_string(menu.heading, terminalWidth, isBG);
+        : center_string(menu.heading, terminalWidth, true);
 
     print_char_whole_width('=', terminalWidth);
 
@@ -90,10 +88,17 @@ void handle_menu_choice(const Menu &menu, const int &choice)
             break;
 
         case 6:
+            save_to_file("moq fail");
             break;
 
         case 7:
+        {
+            std::string filename; 
+            int count = 1;
+            std::getline(std::cin, filename);
+            load_from_file(count,filename);
             break;
+        }
 
         case 8:
             break;
@@ -106,7 +111,7 @@ void handle_menu_choice(const Menu &menu, const int &choice)
 
 void return_to_main_menu()
 {
-    std::cout << "Press Enter to return...";
+    std::cout << "Натисни Enter...";
     std::string placeholder;
     getline(std::cin, placeholder);
     display_menu();

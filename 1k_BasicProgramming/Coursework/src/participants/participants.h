@@ -20,6 +20,9 @@ struct Participant {
 void add_participants(int& count);
 void display_participants();
 void sort_participants(const int &count);
+Participant generate_random_participant(int count);
+void save_to_file(const std::string& filename);
+void load_from_file(int& count, const std::string& filename);
 // void print_participants(const std::vector<Participant>& participants);
 // void find_youngest();
 // void search_by_name(const std::vector<Participant>& participants, const std::string& name);

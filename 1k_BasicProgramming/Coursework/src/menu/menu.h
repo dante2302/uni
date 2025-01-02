@@ -1,6 +1,8 @@
 #ifndef MENU_H
 #define MENU_H
 
+#include <string>
+
 struct Menu
 {
     std::string options;
@@ -11,36 +13,7 @@ struct Menu
     std::string exit_text;
 };
 
-static const Menu menu_EN =
-    {
-        "| Main Menu\n"
-        "| 1. Add Participants\n"
-        "| 2. Display Participants\n"
-        "| 3. Search by Name\n"
-        "| 4. Find Youngest\n"
-        "| 5. Sort by Age\n"
-        "| 6. Categorize Participants\n"
-        "| 7. Determine Winners\n"
-        "| 8. Advanced Options\n"
-        "| 9. Exit\n",
-
-        "BEAUTY CONTEST",
-
-        "  ____                _                ____               _              _   \n"
-        " | __ )   ___   __ _ | |_  _   _      / ___| ___   _ __  | |_  ___  ___ | |_ \n"
-        " |  _ \\  / _ \\ / _` || __|| | | |    | |    / _ \\ | '_ \\ | __|/ _ \\/ __|| __|\n"
-        " | |_) ||  __/| (_| || |_ | |_| |    | |___| (_) || | | || |_|  __/\\__ \\| |_ \n"
-        " |____/  \\___| \\__,_| \\__| \\__, |     \\____|\\___/ |_| |_| \\__|\\___||___/ \\__|\n"
-        "                           |___/                                              \n",
-
-        "Your choice: ",
-
-        "Invalid choice. Please try again: ",
-        
-        "Program terminated. Data saved.\n"
-        };
-
-static const Menu menu_BG =
+static const Menu main_menu =
     {
         "| Меню\n"
         "| 1. Добавяне на Участник\n"
@@ -48,10 +21,12 @@ static const Menu menu_BG =
         "| 3. Показване на най-младия Участник\n"
         "| 4. Търсене на Участник по Име\n"
         "| 5. Подреджане на Участници по Възраст(възходящ ред)\n"
-        "| 6. Допълнителни Опции \n"
-        "| 7. Категоризиране на Участници \n"
-        "| 8. Определи победители \n"
-        "| 9. Изход \n",
+        "| 6. Извеждане във файл\n"
+        "| 7. Въвеждане от файл\n"
+        "| 8. Допълнителни Опции \n"
+        "| 9. Категоризиране на Участници \n"
+        "| 10. Определи победители \n"
+        "| 11. Изход \n",
 
         "КОНКУРС ЗА КРАСОТА",
 
@@ -71,8 +46,8 @@ static const Menu menu_BG =
 
 static const int ART_BOUNDARY = 113;
 
-void display_menu(const bool isBG = true);
-void print_menu(const Menu &menu, const bool isBG = true);
+void display_menu();
+void print_menu(const Menu &menu);
 void handle_menu_choice(const Menu &menu, const int &choice);
 void return_to_main_menu();
 // void display_submenu();
