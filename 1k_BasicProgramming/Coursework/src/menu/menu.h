@@ -2,6 +2,7 @@
 #define MENU_H
 
 #include <string>
+#include "../participants/participants.h"
 
 struct Menu
 {
@@ -44,12 +45,25 @@ static const Menu main_menu =
 
         };
 
+static const Menu additional_submenu = {
+    "| 1. Извеждане на участниците в подреден ред по години и име, без да се променя основния масив.\n"
+    "| 2. Търсене и извеждане на участниците по въведена възраст и пол\n"
+    "| 3. Връщане към главното меню\n",
+    "ДОПЪЛНИТЕЛНИ ОПЦИИ",
+};
+static const Menu file_type_menu = { 
+    "1. Текстов\n"
+    "2. Двойчен\n",
+    "ТИП ФАЙЛ: \n"
+};
+
 static const int ART_BOUNDARY = 113;
 
-void display_menu();
+void display_menu(Participant participants[], int& count);
 void print_menu(const Menu &menu);
-void handle_menu_choice(const Menu &menu, const int &choice);
-void return_to_main_menu();
+void handle_menu_choice(const Menu &menu, const int &choice, Participant participants[], int& count);
+void handle_submenu_choice(const Menu &menu, const int &choice, Participant participants[], int& count);
+void return_to_main_menu(Participant participants[], int& count);
 // void display_submenu();
 
 #endif 
