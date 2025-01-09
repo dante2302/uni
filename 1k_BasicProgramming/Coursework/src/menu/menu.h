@@ -64,6 +64,5 @@ void print_menu(const Menu &menu);
 void handle_menu_choice(const Menu &menu, const int &choice, Participant participants[], int& count);
 void handle_submenu_choice(const Menu &menu, const int &choice, Participant participants[], int& count);
 void return_to_main_menu(Participant participants[], int& count);
-// void display_submenu();
 
 #endif 

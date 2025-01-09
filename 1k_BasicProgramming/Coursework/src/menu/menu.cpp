@@ -80,30 +80,28 @@ void handle_menu_choice(const Menu &menu, const int &choice, Participant partici
         case 3:
         {
             clear_window();
+            if (count < 0) {
+                std::cout << "Няма въведени участници\n";
+                return_to_main_menu(participants, count);
+                return;
+            }
             Participant tempParticipants[MAX_PARTICIPANTS];
             deep_copy_participants(participants, tempParticipants, count);
             sort_participants_by_age(tempParticipants, count);
-            if(count > 0)
+            const int winning_age = tempParticipants[0].age;
+            display_participant_field_names();
+            for (int i = 0; i < count; ++i)
             {
-                const int winning_age = tempParticipants[0].age;
-                for (int i = 0; i < count; ++i)
-                {
-                    double current_age = participants[i].age;
+                double current_age = participants[i].age;
 
-                    if (current_age == winning_age)
-                    {
-                        display_participant_field_names();
-                        display_participant_fields(participants[0]);
-                    }
-                    else
-                        break;
+                if (current_age == winning_age)
+                {
+                    print_separator_line();
+                    display_participant_fields(participants[i]);
                 }
+                else
+                    break;
             }
-            else
-            {
-                std::cout << "Няма въведени участници\n";
-            }
-            delete[] tempParticipants;
             return_to_main_menu(participants, count);
             break;
         }

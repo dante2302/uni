@@ -15,7 +15,7 @@
 
 using namespace std;
 
-void add_participants(Participant participants[], int &count)
+void add_participants(Participant participants[], int &count, bool is_random)
 {
     clear_window();
 
@@ -37,12 +37,51 @@ void add_participants(Participant participants[], int &count)
 
     clear_window();
 
-    srand(time(0));
-    std::cout << generate_random_participant(1).name;
+    if(is_random){
+        srand(time(0));
+
+        for (int i = 0; i < n; ++i)
+        {
+            participants[count] = generate_random_participant(count + 1);
+            count++;
+        }
+        return_to_main_menu(participants, count);
+        return;
+    }
+
     for (int i = 0; i < n; ++i)
     {
-        participants[count] = generate_random_participant(count + 1);
+        Participant p;
+        std::cout << "Enter details for participant " << "#" << (count + 1) << ":\n";
+        p.id = count + 1;
+
+        std::cout << "Name: ";
+        std::getline(std::cin, p.name);
+
+        std::cout << "Age: ";
+        p.age = get_validated_int("Invalid. Try Again: ");
+
+        std::cout << "Gender: ";
+        std::cin >> p.gender;
+
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cin.clear();
+
+        std::cout << "Thigh circumference: ";
+        p.thigh = get_validated_int("Invalid. Try Again: ");
+
+        std::cout << "Shoulder circumference: ";
+        p.shoulder = get_validated_int("Invalid. Try Again: ");
+
+        std::cout << "Neck circumference: ";
+        p.neck = get_validated_int("Invalid. Try Again: ");
+
+        std::cout << "Calf circumference: ";
+        p.calf = get_validated_int("Invalid. Try Again: ");
+
+        participants[count] = p;
         count++;
+        clear_window();
     }
     return_to_main_menu(participants, count);
 }
@@ -100,23 +139,23 @@ void display_by_category(Category category)
 
 void display_participant_field_names() {
     std::cout << std::setw(5)  << std::left << "ID"
-              << std::setw(30) << std::left << "Name"
-              << std::setw(10) << std::left << "Age"
-              << std::setw(10) << std::left << "Gender"
-              << std::setw(10) << std::left << "Thigh"
-              << std::setw(12) << std::left << "Shoulder"
-              << std::setw(10) << std::left << "Neck"
-              << std::setw(10) << std::left << "Calf"
+              << std::setw(33) << std::left << "Име"
+              << std::setw(22) << std::left << "Възраст"
+              << std::setw(13) << std::left << "Пол"
+              << std::setw(15) << std::left << "Бедро"
+              << std::setw(14) << std::left << "Рамо"
+              << std::setw(14) << std::left << "Врат"
+              << std::setw(10) << std::left << "Прасец"
               << std::endl;
 }
 
 void display_participant_fields(const Participant &p) {
     std::cout << std::setw(5)  << std::left << p.id
               << std::setw(30) << std::left << (p.name.size() > 20 ? p.name.substr(0, 20) : p.name)
-              << std::setw(10) << std::left << p.age
+              << std::setw(15) << std::left << p.age
               << std::setw(10) << std::left << p.gender
               << std::setw(10) << std::left << p.thigh
-              << std::setw(12) << std::left << p.shoulder
+              << std::setw(10) << std::left << p.shoulder
               << std::setw(10) << std::left << p.neck
               << std::setw(10) << std::left << p.calf
               << std::endl;
@@ -184,6 +223,7 @@ void search_participants_by_name(const Participant participants[], int count, co
     std::cout << "Участници с име " << name << ":\n";
     display_participant_field_names();
     for (int i = 0; i < foundCount; ++i) {
+        print_separator_line();
         display_participant_fields(foundParticipants[i]);
     }
 }

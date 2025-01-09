@@ -23,7 +23,7 @@ struct Category {
 };
 
 // Basic assignment
-void add_participants(Participant participants[], int& count);
+void add_participants(Participant participants[], int& count, bool is_random=false);
 void print_separator_line(char separator='-', int width=100);
 void display_participants(Participant participants[], int& count);
 void display_participant_fields(const Participant &p);
