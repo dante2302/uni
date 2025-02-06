@@ -52,31 +52,31 @@ void add_participants(Participant participants[], int &count, bool is_random)
     for (int i = 0; i < n; ++i)
     {
         Participant p;
-        std::cout << "Enter details for participant " << "#" << (count + 1) << ":\n";
+        std::cout << "Информация за участник " << "#" << (count + 1) << ":\n";
         p.id = count + 1;
 
-        std::cout << "Name: ";
+        std::cout << "Име: ";
         std::getline(std::cin, p.name);
 
-        std::cout << "Age: ";
-        p.age = get_validated_int("Invalid. Try Again: ");
+        std::cout << "Възраст: ";
+        p.age = get_validated_int("Невалидно. Опитай пак: ");
 
-        std::cout << "Gender: ";
+        std::cout << "Пол: ";
         std::cin >> p.gender;
 
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cin.clear();
 
-        std::cout << "Thigh circumference: ";
+        std::cout << "Обиколка бедро: ";
         p.thigh = get_validated_int("Invalid. Try Again: ");
 
-        std::cout << "Shoulder circumference: ";
+        std::cout << "Обиколка рамене: ";
         p.shoulder = get_validated_int("Invalid. Try Again: ");
 
-        std::cout << "Neck circumference: ";
+        std::cout << "Обиколка врат: ";
         p.neck = get_validated_int("Invalid. Try Again: ");
 
-        std::cout << "Calf circumference: ";
+        std::cout << "Обиколка прасец: ";
         p.calf = get_validated_int("Invalid. Try Again: ");
 
         participants[count] = p;
